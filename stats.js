@@ -1,36 +1,9 @@
+
 const fs = require("fs");
  
 const inputFile = "10000-most-common-passwords.csv";
 const outputFile = "statistics.csv";
 const delimiter = ",";
-const alphabetArray = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z"
-];
  
 function deleteExistingOutputFile() {
   if (fs.existsSync(outputFile)) {
@@ -50,7 +23,7 @@ function processData() {
       maxLength = elements[1].length;
     }
   }
-
+ 
   for (let i = 0; i < maxLength; i++) {
     let count = 0;
     for (let line of lines) {
@@ -61,22 +34,21 @@ function processData() {
     }
     fs.appendFileSync(outputFile, `Chars: ${i},Count: ${count}\n`, "utf-8");
   }
-    
-  for (let i = 0; i < 26; i++) {
+   
+  for (let i = 97; i < 123; i++) {
     let count = 0;
     for (let line of lines) {
       elements = line.split(delimiter);
-      if (elements[1][0] === alphabetArray[i]) {
+      if (elements[1][0] == String.fromCharCode(i)) {
         count += 1;
       }    
     }
-    fs.appendFileSync(outputFile, `Chars: ${alphabetArray[i]},Count: ${count}\n`, "utf-8");
-  
+    fs.appendFileSync(outputFile, `Chars: ${String.fromCharCode(i)},Count: ${count}\n`, "utf-8");
+ 
   }
-
+ 
 }
  
 // Main execution
 deleteExistingOutputFile();
 processData();
- 
