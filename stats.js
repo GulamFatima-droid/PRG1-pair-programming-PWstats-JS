@@ -34,6 +34,8 @@ function processData() {
     }
     fs.appendFileSync(outputFile, `Chars: ${i},Count: ${count}\n`, "utf-8");
   }
+
+  fs.appendFileSync(outputFile, '\n', "utf-8");
    
   for (let i = 97; i < 123; i++) {
     let count = 0;
@@ -52,3 +54,7 @@ function processData() {
 // Main execution
 deleteExistingOutputFile();
 processData();
+
+
+
+
